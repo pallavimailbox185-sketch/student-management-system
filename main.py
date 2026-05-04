@@ -1,4 +1,4 @@
-from manager import StudentManager
+from student_manager import StudentManager
 
 def main():
     mgr = StudentManager()
