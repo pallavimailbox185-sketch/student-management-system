@@ -1,44 +1,43 @@
-from student_manager import StudentManager
+from manager import StudentManager
 
-def menu():
-    manager = StudentManager()
+def main():
+    mgr = StudentManager()
 
     while True:
         print("\n===== Student Management System =====")
-        print("1. Add Student")
-        print("2. View Students")
-        print("3. Update Student")
-        print("4. Delete Student")
+        print("1. Add student")
+        print("2. Update student")
+        print("3. Delete student")
+        print("4. List all students")
         print("5. Exit")
 
-        choice = input("Enter your choice: ")
+        choice = input("Choose an option: ").strip()
 
         if choice == "1":
-            sid = input("Enter ID: ")
-            name = input("Enter Name: ")
-            grade = input("Enter Grade: ")
-            manager.add_student(sid, name, grade)
+            sid   = input("Student ID: ").strip()
+            name  = input("Name: ").strip()
+            grade = input("Grade: ").strip()
+            mgr.add_student(sid, name, grade)
 
         elif choice == "2":
-            manager.list_students()
+            sid   = input("Student ID to update: ").strip()
+            name  = input("New name (leave blank to keep): ").strip() or None
+            grade = input("New grade (leave blank to keep): ").strip() or None
+            mgr.update_student(sid, name, grade)
 
         elif choice == "3":
-            sid = input("Enter ID to update: ")
-            name = input("Enter new name (leave blank to skip): ")
-            grade = input("Enter new grade (leave blank to skip): ")
-            manager.update_student(sid, name or None, grade or None)
+            sid = input("Student ID to delete: ").strip()
+            mgr.delete_student(sid)
 
         elif choice == "4":
-            sid = input("Enter ID to delete: ")
-            manager.delete_student(sid)
+            mgr.list_students()
 
         elif choice == "5":
             print("Goodbye!")
             break
 
         else:
-            print("Invalid choice!")
+            print("Invalid option. Try again.")
 
 if __name__ == "__main__":
-    menu()
-    
+    main()
